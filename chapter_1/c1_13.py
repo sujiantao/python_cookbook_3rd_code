@@ -22,8 +22,8 @@ print(rows_by_uid)
 
 # itemgetter() 函数也支持多个keys，比如下面的代码
 
-rows_by_lfname = sorted(rows, key=itemgetter('lname', 'fname'))
-print(rows_by_lfname)
+# rows_by_lfname = sorted(rows, key=itemgetter('lname', 'fname'))
+# print(rows_by_lfname)
 
 # 讨论：在上面的例子中，rows被传递给接受一个关键字参数的sorted()内置函数。
 # 这个参数是callable类型，并且从rows中接受一个单一元素，然后返回被用来排序的值。
@@ -31,4 +31,17 @@ print(rows_by_lfname)
 
 # operator.itemgetter()函数有一个被rows中的记录用来查找值的索引参数。
 # 可以是一个字典键名称，一个整形值或者任何能够传入一个对象的__getitem__()方法的值。
-#
+# 如果你传入多个索引参数给itemgetter()，它生成的callable对象会返回一个包含所有元素的元组，
+# 并且sorted()函数会根据这个元组中元素顺序去排序。但你想要同时在几个字段上面进行排序（比如通过姓和名来排序，也就是例子中的那样）的时候这种方法是很有用的。
+
+# itemgetter()有时候也可以用lambda表达式代替，比如：
+
+rows_by_fname = sorted(rows, key=lambda r: r['fname'])
+rows_by_lname = sorted(rows, key=lambda r: (r['lname'], r['fname']))
+
+# 这种方案也不错。但是，使用itemgetter()方式会运行的稍微快点。因此，如果你对性能要求比较高的话就使用itemgetter()方式。
+
+# 最后，不要忘了这节中展示的技术也同样适用于min()和max()等函数。比如：
+
+print(min(rows, key=itemgetter('uid')))
+print(max(rows, key=itemgetter('uid')))
