@@ -23,3 +23,20 @@ def manual_iter_v2():
 
 if __name__ == "__main__":
     manual_iter_v2()
+
+# 讨论
+# 大多数情况下，我们会使用for循环语句来遍历一个可迭代对象。
+# 但是，偶尔也需要对迭代做更加精确的控制，这时候了解底层迭代机制就显得尤为重要了。
+# 下面的交互示例向我们演示了迭代期间所发生的基本细节：
+
+items = [1, 2, 3]
+# get the iterator
+it = iter(items)
+# Run the iterator
+print(next(it))
+print(next(it))
+print(next(it))
+print(next(it))
+
+# 本章接下来几小节会更深入的讲解迭代相关技术，前提是你先要理解基本的迭代协议机制。
+# 所以确保你已经把这章的内容牢牢记在心中。
