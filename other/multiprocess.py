@@ -2,10 +2,9 @@ from concurrent.futures import ProcessPoolExecutor
 
 from pymongo import MongoClient
 
-from conf import run_config
 
-client = MongoClient(run_config.MONGODB_URI)
-db = client[run_config.MONGODB_DB]
+client = MongoClient("")
+db = client["test"]
 t1 = 1
 
 
